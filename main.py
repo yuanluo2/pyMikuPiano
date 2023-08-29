@@ -1,5 +1,3 @@
-import sys
-
 import pygame
 from pygame import mixer
 
@@ -101,10 +99,12 @@ if __name__ == '__main__':
     keysPressed is needed here, because you could press multiple keys at the same time. keysPressed
     is considered as a queue(first in, first out).
     """
-    while True:
+    running = True
+
+    while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                sys.exit()
+                running = False
             elif event.type == pygame.KEYDOWN:
                 pianoKey = keysMapping.get(event.key)
 
@@ -125,3 +125,5 @@ if __name__ == '__main__':
             key.drawOn(window)
 
         pygame.display.flip()
+
+    pygame.quit()
