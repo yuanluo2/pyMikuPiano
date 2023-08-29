@@ -1,7 +1,7 @@
 # pyMikuPiano
 一个使用python编写的虚拟钢琴, 它是我C++版本的复刻版本.你需要提前安装pygame库.python main.py即可启动它.
 
-========================================================================================================
+==================================================================
 
 A virtual piano written in Python, which is a replica of my C++version. You need to install the pygame library. Python main.py in advance to start it
 
