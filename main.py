@@ -88,16 +88,11 @@ if __name__ == '__main__':
         else:
             blackPianoKeys.append(pianoKey)
 
-    keysPressed = []
-
     """
     event loop.
     When a key is pressed, if it is in our keysMapping, change the corresponding piano key's color,
-    play the sound, and record this key in order to reset its color when the key is released. This
-    is used to simulate the feedback effect of piano pressing in reality.
-    
-    keysPressed is needed here, because you could press multiple keys at the same time. keysPressed
-    is considered as a queue(first in, first out).
+    play the sound, and reset its color when the key is released. This is used to simulate the feedback
+    effect of piano pressing in reality.
     """
     running = True
 
@@ -111,11 +106,11 @@ if __name__ == '__main__':
                 if pianoKey is not None:
                     pianoKey.setColor(COLOR_MIKU)
                     pianoKey.playedOn(pygame.mixer.Channel(event.key % CHANNEL_NUMS))
-                    keysPressed.append(event.key)
             elif event.type == pygame.KEYUP:
-                while len(keysPressed) != 0:
-                    key = keysPressed.pop(0)
-                    keysMapping[key].resetColor()
+                pianoKey = keysMapping.get(event.key)
+
+                if pianoKey is not None:
+                    pianoKey.resetColor()
 
         # render
         for key in whitePianoKeys:
